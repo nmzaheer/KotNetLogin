@@ -1,3 +1,4 @@
+import argparse
 import base64
 from bs4 import BeautifulSoup, Comment
 import getpass
@@ -10,7 +11,16 @@ URL1 = "https://netlogin.kuleuven.be/cgi-bin/wayf2.pl"
 URL2 = "https://netlogin.kuleuven.be/cgi-bin/netlogin.pl"
 PATH = os.path.expanduser('~/.kotnetlogin')
 
-def autologin():
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--setup", help="Setup the account or change login credentials", action="store_true")
+    args = parser.parse_args()
+    if args.setup:
+        set_account()
+    else:
+        auto_login()
+
+def auto_login():
     payload = {'inst':'kuleuven', 'lang':'en', 'submit':'Ga verder / Continue'}
     s = requests.Session()
     r = s.get(URL1, params=payload)
@@ -33,7 +43,7 @@ def set_account():
     encoded_pwd = base64.b64encode(pwd)
     with open(PATH,'w') as doc:
         doc.write(username+":"+encoded_pwd)
-    print "Account setup successful"
+        print "Login credentials saved successfully"
 
 def get_details():
     with open(PATH,'r') as doc:
@@ -42,4 +52,4 @@ def get_details():
         return [uid,pwd]
         
 if __name__ == '__main__':
-    autologin()
+    main()

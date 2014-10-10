@@ -9,10 +9,9 @@ The first step involves setting up your account by giving your username and pass
 
 ``` sh
 $ python KotnetLogin.py --setup
-Enter username: nmzaheer
+Enter username: <your_student_number>
 Password:
-
-Account details were saved successfully
+Login credentials saved successfully
 ```
 
 ###Running the script
