@@ -13,6 +13,7 @@ Enter username: <your_student_number>
 Password:
 Login credentials saved successfully
 ```
+*This has to be done only once i.e. for the first time*. The script will make use of the credentials you give to login everytime into KotNet
 
 ###Running the script
 
