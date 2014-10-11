@@ -9,7 +9,7 @@ import urllib2
 
 URL1 = "https://netlogin.kuleuven.be/cgi-bin/wayf2.pl"
 URL2 = "https://netlogin.kuleuven.be/cgi-bin/netlogin.pl"
-PATH = os.path.expanduser('~/.kotnetlogin')
+PATH = '/etc/kotnet.conf'
 
 def main():
     parser = argparse.ArgumentParser()
@@ -33,9 +33,9 @@ def auto_login():
     soup = BeautifulSoup(res.read())
     comment = soup.findAll(text=lambda text:isinstance(text, Comment) and "password verification successful" in text)
     if comment:
-        print "Login successful"
+        print "Successfully logged into your Kotnet account"
     else:
-        print "Login failed"
+        print "Unable to login. Try doing it manually"
 
 def set_account():
     username = raw_input("Enter your username :")
